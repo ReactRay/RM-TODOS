@@ -304,6 +304,38 @@ table {
 
 }
 
+.home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--blue);
+    border-radius: 8px;
+    color: white;
+    width: 90%;
+    line-height: 3.2rem;
+}
+
+.home ul {
+    background-color: var(--light);
+    color: var(--gray);
+    list-style: none;
+    padding: .5rem;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+.home li {
+    border-bottom: 1px solid var(--blue);
+}
+
+.home h4 {
+    border: 1px solid var(--gray);
+    padding: .5rem;
+    color: var(--gray);
+    background-color: var(--light);
+}
+
 @media (max-width: 768px) {
     .todo-edit {
         padding: 1rem;
