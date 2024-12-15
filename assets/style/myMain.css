@@ -62,7 +62,7 @@ a:hover {
 }
 
 .boxshadow {
-    box-shadow: 4px 4px 20px var(--gray);
+    box-shadow: 4px 4px 20px var(--blue);
     transition: all 1s;
 }
 
