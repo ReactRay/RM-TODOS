@@ -29,13 +29,16 @@ export function ProgressBar() {
     }
 
     return (
+
         <div className="bar">
+            <span>progress:</span>
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(((bar, idx) => {
                 return <div key={idx + 1} className={`bar-unit ${idx + 1 <= numberOfDone ? 'light' : ''}`}>
 
                 </div>
             }))}
         </div>
+
     )
 }
 

@@ -9,6 +9,7 @@ import {
 import { store } from '../store.js'
 
 export function loadTodos() {
+  // filter as param
   const filterBy = store.getState().todoModule.filterBy
 
   store.dispatch({ type: SET_IS_LOADING, isLoading: false }) // change later

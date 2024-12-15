@@ -26,7 +26,7 @@ export function TodoIndex() {
     useEffect(() => {
         onLoadTodos()
 
-    }, [filterBy.txt || filterBy.importance || filterBy.isDone])
+    }, [filterBy])
 
 
 
