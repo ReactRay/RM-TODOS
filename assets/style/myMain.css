@@ -1,0 +1,262 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+
+    --dark: #222831;
+    --gray: #393E46;
+    --blue: #9DB2BF;
+    --light: #EAEAEA;
+
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 800;
+    background-color: var(--light);
+}
+
+a {
+    text-decoration: none;
+    color: var(--light)
+}
+
+input {
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    margin: 5px 10px;
+}
+
+span {
+    color: var(--light)
+}
+
+.container {
+    padding: 2rem;
+    margin: 2rem auto;
+    width: 95%;
+}
+
+.done {
+    text-decoration: line-through;
+}
+
+button {
+    border: none;
+    padding: 4px 6px;
+    font-size: 1rem;
+    background-color: var(--light);
+}
+
+button:hover {
+    background-color: var(--gray);
+    color: var(--light)
+}
+
+a:hover {
+    color: var(--gray)
+}
+
+.boxshadow {
+    box-shadow: 4px 4px 20px var(--gray);
+}
+
+/* classes */
+
+.bar {
+
+    width: 90%;
+    height: 30px;
+    background-color: var(--blue);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 1rem auto;
+    width: 500px;
+}
+
+.bar-unit {
+    background-color: var(--light);
+    width: 3rem;
+    height: 1.8rem;
+    border: 1px solid var(--gray);
+}
+
+.light {
+    background-color: green;
+}
+
+
+
+.header {
+    padding: 10px;
+    width: 100%;
+    background-color: var(--blue);
+    color: var(--dark)
+}
+
+.header-flex {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.nav-flex {
+    display: flex;
+    gap: 20px;
+}
+
+.active {
+    text-decoration: underline;
+    font-size: 1.3rem;
+}
+
+.btn {
+    border: none;
+    padding: 4px 6px;
+    font-size: 1rem;
+    background-color: var(--gray);
+    color: var(--light)
+}
+
+.btn:hover {
+    background-color: var(--light);
+    color: var(--gray);
+}
+
+/* general components*/
+
+.todo-index {
+    padding: 2rem 1.5rem;
+    width: 90%;
+    margin: 0px auto;
+
+}
+
+.todo-filter {
+    background-color: var(--blue);
+    padding: 1rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.todo-list {
+    padding: 1rem 1rem;
+    background-color: var(--blue);
+    border-radius: 8px;
+    margin-top: 1rem
+}
+
+.todo-list-flex {
+    list-style: none;
+    padding: 1rem 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    border-radius: 8px;
+
+}
+
+.todo-list-flex li {
+    font-size: 1rem;
+    padding: 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    background-color: var(--light);
+    color: var(--dark);
+    box-shadow: 4px 4px 30px var(--gray);
+    transition: all 1s;
+}
+
+.todo-list-flex li:hover {
+    box-shadow: 4px 4px 30px var(--light);
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+
+
+
+/* testing for tabel */
+/* Styling for the DataTable component */
+.the-table {
+    background-color: var(--blue);
+    padding: 1rem 1rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+
+}
+
+.data-table th,
+.data-table td {
+    padding: 10px;
+    text-align: left;
+}
+
+.data-table th {
+    font-weight: bold;
+    background-color: #f4f4f4;
+}
+
+.data-table td {
+    border-top: 1px solid #ddd;
+}
+
+.data-table tr:hover {
+    background-color: var(--light);
+    color: var(--dark)
+}
+
+/* Styling for the toggle-expand column */
+.toggle-expand {
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Styling for the expanded row */
+.todo-info {
+    padding: 10px;
+    background-color: var(--light);
+    border-top: 1px solid #ddd;
+}
+
+.todo-info h5 {
+    margin: 0 0 10px;
+}
+
+.todo-info img {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.todo-info p {
+    margin: 10px 0;
+}
+
+button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Add some spacing for the table */
+table {
+    margin-bottom: 20px;
+}
