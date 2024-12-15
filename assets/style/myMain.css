@@ -119,7 +119,7 @@ a:hover {
 .active {
     text-decoration: underline;
     font-size: 1.3rem;
-    color: var(--dark)
+    color: var()
 }
 
 .btn {
@@ -302,4 +302,95 @@ table {
 
 
 
+}
+
+@media (max-width: 768px) {
+    .todo-edit {
+        padding: 1rem;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .todo-edit label {
+        font-size: 0.9rem;
+    }
+
+    .todo-edit input {
+        font-size: 0.9rem;
+        padding: 6px;
+    }
+
+    .todo-edit button {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Responsive Styling for DataTable */
+@media (max-width: 768px) {
+    .data-table {
+        width: 100%;
+        font-size: 0.9rem;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 8px;
+    }
+
+    .data-table td {
+        display: block;
+        text-align: right;
+        border-bottom: 1px solid var(--gray);
+    }
+
+    .data-table th {
+        display: none;
+        /* Hide headers for mobile */
+    }
+
+    /* Add pseudo-element for labels */
+    .data-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        text-align: left;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-flex {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-flex {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .todo-list-flex {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .todo-list-flex li {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .bar {
+        width: 90%;
+    }
+
+
+
+    .data-table th,
+    .data-table td {
+        padding: 8px;
+        font-size: 0.9rem;
+
+    }
 }
