@@ -20,7 +20,7 @@ export function userReducer(state = initialState, cmd = {}) {
       }
 
     case SET_USER_SCORE:
-      return { ...state, score: state.score + 10 }
+      return { ...state, score: cmd.score }
     case SET_PREF:
       return { ...state, pref: cmd.pref }
 

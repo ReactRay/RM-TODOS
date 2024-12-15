@@ -42,7 +42,7 @@ export function TodoFilter({ filterBy, onSetFilterBy }) {
 
     return (
         <section className="todo-filter boxshadow">
-            <h2>Filter Todos</h2>
+            <h2>Filter Todos 📁</h2>
             <form onSubmit={onSubmitFilter}>
                 <input
                     value={txt}

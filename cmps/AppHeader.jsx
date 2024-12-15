@@ -13,6 +13,7 @@ export function AppHeader() {
     const navigate = useNavigate()
     // const [user, setUser] = useState(userService.getLoggedinUser()) // store
     const user = useSelector(storeState => storeState.userModule.loggedInUser)
+    const score = useSelector(storeState => storeState.userModule.score)
     const dispatch = useDispatch()
 
     function onLogout() { // action
@@ -30,7 +31,7 @@ export function AppHeader() {
                     <NavLink to="/" >Home</NavLink>
                     {/* <NavLink to="/about" >About</NavLink> */}
                     <NavLink to="/todo" >Todos</NavLink>
-                    <NavLink to="/dashboard" >Dashboard</NavLink>
+                    {/* <NavLink to="/dashboard" >Dashboard</NavLink> */}
                     {user && <NavLink to="/userProfile" >your  Profile</NavLink>}
 
                 </nav>
@@ -38,7 +39,7 @@ export function AppHeader() {
                 {user ? (
                     < section style={{ display: 'flex', justifyContent: 'space-between', width: '300px' }} >
 
-                        <Link to={`/userProfile`}>Hello {user.fullname}</Link>
+                        <Link to={`/userProfile`}>Hello {user.fullname} your score is: {score}</Link>
                         <button onClick={onLogout}>Logout</button>
                     </ section >
                 ) : (

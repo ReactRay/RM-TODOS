@@ -6,7 +6,9 @@ import {
   SET_IS_LOADING,
   UPDATE_TODO,
 } from '../reducers/todo.reducer.js'
+import { SET_USER_SCORE } from '../reducers/user.reducer.js'
 import { store } from '../store.js'
+import { getScore, incrementScore } from './user.actions.js'
 
 export function loadTodos() {
   // filter as param
@@ -56,6 +58,9 @@ export function saveTodo(todo) {
 
 export function toggleIsDone(todo) {
   const todoToSave = { ...todo, isDone: !todo.isDone }
+
+  if (todoToSave.isDone) incrementScore().then(() => getScore())
+
   return todoService
     .save(todoToSave)
     .then((savedTodo) => {

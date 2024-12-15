@@ -4,6 +4,7 @@ import { TodoList } from "../cmps/TodoList.jsx"
 import { DataTable } from "../cmps/data-table/DataTable.jsx"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 import { removeTodo, loadTodos, toggleIsDone } from '../store/actions/todo.actions.js'
+import { getScore, incrementScore } from "../store/actions/user.actions.js"
 
 import { SET_FILTER_BY } from "../store/reducers/todo.reducer.js"
 
@@ -22,9 +23,12 @@ export function TodoIndex() {
     const dispatch = useDispatch()
 
     const userStyle = useSelector(storeState => storeState.userModule.pref)
+    const user = useSelector(storeState => storeState.userModule.loggedInUser)
 
     useEffect(() => {
         onLoadTodos()
+        if (user)
+            getScore()
 
     }, [filterBy])
 
@@ -45,12 +49,10 @@ export function TodoIndex() {
         removeTodo(todoId)
     }
 
-    function onLoadTodos() {
-        loadTodos()
-    }
+
 
     function onToggleTodo(todo) {
-        toggleIsDone(todo).then(() => showSuccessMsg('updated the status'))
+        toggleIsDone(todo).then(() => { showSuccessMsg('updated the status') })
             .catch(() => showErrorMsg('oh no'))
     }
 
@@ -65,7 +67,7 @@ export function TodoIndex() {
 
             <TodoList todos={todos} onRemoveTodo={onRemoveTodo} onToggleTodo={onToggleTodo} />
             <div className="the-table boxshadow">
-                <h2>Todos Table</h2>
+                <h2>Todos Table 📔</h2>
                 <DataTable todos={todos} onRemoveTodo={onRemoveTodo} />
             </div>
         </section>

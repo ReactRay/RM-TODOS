@@ -37,3 +37,15 @@ export function logout() {
       throw err
     })
 }
+
+export function getScore() {
+  return userService
+    .getUserScore()
+    .then((score) => store.dispatch({ type: SET_USER_SCORE, score }))
+}
+
+export function incrementScore() {
+  return userService.incrementUserScore((score) =>
+    dispatch({ type: SET_USER_SCORE, score })
+  )
+}

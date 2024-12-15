@@ -62,7 +62,7 @@ a:hover {
 }
 
 .boxshadow {
-    box-shadow: 4px 4px 20px var(--blue);
+    box-shadow: 4px 4px 20px var(--gray);
     transition: all 1s;
 }
 
@@ -119,6 +119,7 @@ a:hover {
 .active {
     text-decoration: underline;
     font-size: 1.3rem;
+    color: var(--dark)
 }
 
 .btn {
@@ -291,7 +292,14 @@ table {
 
 .todo-edit {
     background-color: var(--blue);
-    text-align: center;
-    width: 40%;
     border-radius: 8px;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    margin: 0 auto;
+
+
+
 }
