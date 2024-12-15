@@ -14,7 +14,7 @@ export function TodoList({ todos, onToggleTodo }) {
     }
 
     return (
-        <div className="todo-list">
+        <div className="todo-list boxshadow">
             <h2>Todo List</h2>
             <ul className="todo-list-flex">
                 {todos.map(todo =>

@@ -41,7 +41,7 @@ export function TodoFilter({ filterBy, onSetFilterBy }) {
     const { txt = "", importance = "", isDone = "" } = filterByToEdit;
 
     return (
-        <section className="todo-filter">
+        <section className="todo-filter boxshadow">
             <h2>Filter Todos</h2>
             <form onSubmit={onSubmitFilter}>
                 <input

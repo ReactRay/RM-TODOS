@@ -64,7 +64,7 @@ export function TodoIndex() {
             </div>
 
             <TodoList todos={todos} onRemoveTodo={onRemoveTodo} onToggleTodo={onToggleTodo} />
-            <div className="the-table">
+            <div className="the-table boxshadow">
                 <h2>Todos Table</h2>
                 <DataTable todos={todos} onRemoveTodo={onRemoveTodo} />
             </div>

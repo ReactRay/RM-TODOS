@@ -16,7 +16,7 @@
 body {
     font-family: 'Courier New', Courier, monospace;
     font-weight: 800;
-    background-color: var(--light);
+    background-color: rgb(206, 206, 206);
 }
 
 a {
@@ -62,7 +62,12 @@ a:hover {
 }
 
 .boxshadow {
-    box-shadow: 4px 4px 20px var(--gray);
+    box-shadow: 4px 4px 20px var(--blue);
+    transition: all 1s;
+}
+
+.boxshadow:hover {
+    box-shadow: 4px 4px 40px var(--light);
 }
 
 /* classes */
@@ -255,4 +260,38 @@ button {
 /* Add some spacing for the table */
 table {
     margin-bottom: 20px;
+}
+
+.user-msg {
+    background-color: var(--light);
+    padding: 1rem 1rem;
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+    color: white;
+    font-weight: bold;
+    font-size: 1.4rem;
+    border-radius: 4px;
+    box-shadow: 4px 4px 20px var(--light);
+}
+
+.user-msg.success {
+    background-color: lightgreen;
+}
+
+.user-msg.error {
+    background-color: lightcoral;
+}
+
+
+.user-msg button {
+    float: right;
+    margin: 1em;
+}
+
+.todo-edit {
+    background-color: var(--blue);
+    text-align: center;
+    width: 40%;
+    border-radius: 8px;
 }

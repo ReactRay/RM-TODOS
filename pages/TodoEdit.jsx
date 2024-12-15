@@ -53,7 +53,7 @@ export function TodoEdit() {
     const { txt, importance, isDone } = todoToEdit
 
     return (
-        <section className="todo-edit">
+        <section className="container todo-edit">
             <form onSubmit={onSaveTodo} >
                 <label htmlFor="txt">Text:</label>
                 <input onChange={handleChange} value={txt} type="text" name="txt" id="txt" />
