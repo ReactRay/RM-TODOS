@@ -357,6 +357,13 @@ table {
         padding: 8px;
         font-size: 0.9rem;
     }
+
+    .todo-preview {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 90%;
+    }
 }
 
 /* Responsive Styling for DataTable */
@@ -404,7 +411,8 @@ table {
     }
 
     .todo-list-flex {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr;
         flex-wrap: wrap;
     }
 
