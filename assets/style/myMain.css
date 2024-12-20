@@ -304,6 +304,10 @@ table {
 
 }
 
+.todo-preview {
+    width: 32%;
+}
+
 .home {
     display: flex;
     align-items: center;
