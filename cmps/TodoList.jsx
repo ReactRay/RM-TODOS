@@ -20,7 +20,7 @@ export function TodoList({ todos, onToggleTodo }) {
                 {todos.map(todo =>
                     <li key={todo._id}>
                         <TodoPreview todo={todo} />
-                        <section style={{ display: 'flex', justifyContent: 'space-evenly', gap: '1rem' }}>
+                        <section className="btn-section" style={{ display: 'flex', justifyContent: 'space-evenly', gap: '1rem' }}>
                             <button className="btn" onClick={() => onRemoveTodo(todo._id)}>Remove</button>
                             <Link className="btn" to={`/todo/${todo._id}`}>Details</Link>
                             <Link className="btn" to={`/todo/edit/${todo._id}`}>Edit</Link>

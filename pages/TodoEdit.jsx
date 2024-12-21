@@ -66,15 +66,17 @@ export function TodoEdit() {
 
     return (
         <section className="container ">
+
             <form onSubmit={onSaveTodo} className="todo-edit">
+
                 <label htmlFor="txt">Text:</label>
                 <input onChange={handleChange} value={txt} type="text" name="txt" id="txt" />
 
                 <label htmlFor="importance">Importance:</label>
                 <input onChange={handleChange} value={importance} type="number" name="importance" id="importance" />
 
-                <label htmlFor="isDone">isDone:</label>
-                <input onChange={handleChange} value={isDone} type="checkbox" name="isDone" id="isDone" />
+                {!params.todoId && <div><label htmlFor="isDone">isDone:</label>
+                    <input onChange={handleChange} value={isDone} type="checkbox" name="isDone" id="isDone" /> </div>}
 
 
                 <button>Save</button>
