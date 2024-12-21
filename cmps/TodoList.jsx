@@ -18,10 +18,10 @@ export function TodoList({ todos, onToggleTodo }) {
             <h2>Todo List📃📖</h2>
             <ul className="todo-list-flex">
                 {todos.map(todo =>
-                    <li key={todo._id}>
+                    <li key={todo._id} className="container-preview">
                         <TodoPreview todo={todo} />
                         <section className="btn-section" style={{ display: 'flex', justifyContent: 'space-evenly', gap: '1rem' }}>
-                            <button className="btn" onClick={() => onRemoveTodo(todo._id)}>Remove</button>
+                            <button className="btn remove" onClick={() => onRemoveTodo(todo._id)}>Remove</button>
                             <Link className="btn" to={`/todo/${todo._id}`}>Details</Link>
                             <Link className="btn" to={`/todo/edit/${todo._id}`}>Edit</Link>
                             <button className="btn" onClick={() => onToggleTodo(todo)}>toggle status</button>
