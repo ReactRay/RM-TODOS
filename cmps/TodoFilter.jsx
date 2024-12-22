@@ -12,7 +12,6 @@ export function TodoFilter({ filterBy, onSetFilterBy }) {
         debouncedSetFilter(filterByToEdit);
     }, [filterByToEdit]);
 
-    console.log(filterBy)
     function handleChange({ target }) {
         const field = target.name;
         let value = target.value;

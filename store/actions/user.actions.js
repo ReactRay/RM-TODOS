@@ -53,14 +53,25 @@ export function logout() {
 
 export function getScore() {
   return userService
-    .getUserScore()
-    .then((score) => store.dispatch({ type: SET_USER_SCORE, score }))
+    .getScore()
+    .then((score) => store.dispatch({ type: SET_USER_SCORE, score: score }))
 }
 
+export function getStyle() {
+  return userService
+    .getPrefs()
+    .then((style) => store.dispatch({ type: SET_PREF, pref: style }))
+}
 export function incrementScore() {
-  return userService.incrementUserScore((score) =>
-    dispatch({ type: SET_USER_SCORE, score })
-  )
+  return userService
+    .incrementUserScore()
+    .then((updatedScore) => {
+      store.dispatch({ type: SET_USER_SCORE, score: updatedScore })
+    })
+    .catch((err) => {
+      console.error('user actions -> Failed to increment score:', err)
+      throw err
+    })
 }
 
 export function updateUserPref(pref) {

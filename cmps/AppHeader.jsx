@@ -5,9 +5,12 @@ const { useNavigate } = ReactRouter
 import { UserMsg } from "./UserMsg.jsx"
 import { LoginSignup } from './LoginSignup.jsx'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
-import { logout } from '../store/actions/user.actions.js'
+import { logout, getScore } from '../store/actions/user.actions.js'
+
 
 const { useSelector, useDispatch } = ReactRedux
+
+const { useEffect } = React
 
 export function AppHeader() {
     const navigate = useNavigate()
@@ -17,6 +20,12 @@ export function AppHeader() {
     const dispatch = useDispatch()
     const formStyle = useSelector(state => state.userModule.pref)
 
+
+    useEffect(() => {
+
+        getScore()
+
+    }, [score, user])
 
     function onLogout() { // action
 

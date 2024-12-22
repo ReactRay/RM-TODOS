@@ -1,5 +1,5 @@
 import { ToggleButton } from "../cmps/ToggleButton.jsx"
-import { getScore } from "../store/actions/user.actions.js"
+import { getScore, getStyle } from "../store/actions/user.actions.js"
 
 const { useState, useEffect } = React
 
@@ -14,7 +14,10 @@ export function Home() {
     const formStyle = useSelector(state => state.userModule.pref)
 
     useEffect(() => {
-        if (user) getScore()
+        if (user) {
+            getScore()
+            getStyle()
+        }
 
     }, [])
 

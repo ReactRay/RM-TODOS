@@ -4,7 +4,7 @@ import { TodoList } from "../cmps/TodoList.jsx"
 import { DataTable } from "../cmps/data-table/DataTable.jsx"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 import { removeTodo, loadTodos, toggleIsDone } from '../store/actions/todo.actions.js'
-import { getScore, incrementScore } from "../store/actions/user.actions.js"
+import { getScore, incrementScore, getStyle } from "../store/actions/user.actions.js"
 
 import { SET_FILTER_BY } from "../store/reducers/todo.reducer.js"
 
@@ -22,7 +22,6 @@ export function TodoIndex() {
 
     const dispatch = useDispatch()
 
-    const userStyle = useSelector(storeState => storeState.userModule.pref)
     const user = useSelector(storeState => storeState.userModule.loggedInUser)
 
     const formStyle = useSelector(state => state.userModule.pref)
@@ -30,8 +29,11 @@ export function TodoIndex() {
 
     useEffect(() => {
         onLoadTodos()
-        if (user)
+        if (user) {
             getScore()
+            getStyle()
+        }
+
 
     }, [filterBy])
 

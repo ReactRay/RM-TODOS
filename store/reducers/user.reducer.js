@@ -6,8 +6,8 @@ export const SET_PREF = 'SET_PREF'
 
 const initialState = {
   loggedInUser: userService.getLoggedinUser(),
-  score: 0,
-  pref: userService.getPrefs(),
+  score: +userService.getScore() || -1,
+  pref: userService.getPrefs() || {},
   notifications: {},
 }
 

@@ -1,7 +1,8 @@
 import { todoService } from "../services/todo.service.js"
 import { showErrorMsg } from "../services/event-bus.service.js"
-
+import { getStyle } from "../store/actions/user.actions.js"
 const { useState, useEffect } = React
+const { useSelector } = ReactRedux
 const { useParams, useNavigate, Link } = ReactRouterDOM
 
 export function TodoDetails() {
@@ -9,9 +10,11 @@ export function TodoDetails() {
     const [todo, setTodo] = useState(null)
     const params = useParams()
     const navigate = useNavigate()
+    const formStyle = useSelector(state => state.userModule.pref) || userService.getPrefs()
 
     useEffect(() => {
         loadTodo()
+        getStyle()
     }, [params.todoId])
 
 
@@ -32,7 +35,7 @@ export function TodoDetails() {
 
     if (!todo) return <div>Loading...</div>
     return (
-        <section className="todo-details">
+        <section className="todo-details boxshadow" style={formStyle}>
             <h1 className={(todo.isDone) ? 'done' : ''}>{todo.txt}</h1>
             <h2>{(todo.isDone) ? 'Done!' : 'In your list'}</h2>
 

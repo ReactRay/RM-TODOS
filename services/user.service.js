@@ -9,10 +9,10 @@ export const userService = {
   query,
   getEmptyCredentials,
   incrementUserScore,
-  getUserScore,
   getPrefs,
   update,
   addToHistory,
+  getScore,
 }
 const STORAGE_KEY_LOGGEDIN = 'user'
 const STORAGE_KEY = 'userDB'
@@ -57,7 +57,12 @@ function getLoggedinUser() {
 }
 
 function _setLoggedinUser(user) {
-  const userToSave = { _id: user._id, fullname: user.fullname, pref: user.pref }
+  const userToSave = {
+    _id: user._id,
+    fullname: user.fullname,
+    pref: user.pref,
+    score: user.score,
+  }
   sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(userToSave))
   return userToSave
 }
@@ -68,19 +73,6 @@ function getEmptyCredentials() {
     username: 'muki',
     password: 'muki1',
   }
-}
-
-function getUserScore() {
-  const loggedInUser = getLoggedinUser()
-  if (!loggedInUser) return 'User not logged in'
-
-  return getById(loggedInUser._id).then((fullUser) => {
-    if (fullUser) {
-      console.log(fullUser)
-      return fullUser.score
-    }
-    return 'Score not found'
-  })
 }
 
 function addToHistory(txt) {
@@ -105,24 +97,20 @@ function addToHistory(txt) {
 }
 
 function incrementUserScore() {
-  const loggedInUser = getLoggedinUser() // Retrieve logged-in user from sessionStorage
+  const loggedInUser = getLoggedinUser()
   if (!loggedInUser) return Promise.reject('No logged-in user')
 
-  return getById(loggedInUser._id)
-    .then((fullUser) => {
-      if (!fullUser) return Promise.reject('User not found in database')
-
-      fullUser.score = (fullUser.score || 0) + 10
-
-      return storageService.put(STORAGE_KEY, fullUser).then(() => {
-        _setLoggedinUser(fullUser)
-        return fullUser.score
-      })
+  return getById(loggedInUser._id).then((user) => {
+    console.log('user is', user.score)
+    if (!user) return Promise.reject('User not found')
+    let newScore = +user.score + 10
+    let updatedUser = { ...user, score: newScore }
+    console.log('user nooow', user)
+    return storageService.put(STORAGE_KEY, updatedUser).then(() => {
+      _setLoggedinUser(user)
+      return user.score
     })
-    .catch((err) => {
-      console.error('Failed to increment user score:', err)
-      throw err
-    })
+  })
 }
 
 // :root {
@@ -140,10 +128,22 @@ function getPrefs() {
 
   return getById(loggedInUser._id).then((fullUser) => {
     if (fullUser) {
-      console.log(fullUser.pref)
       return fullUser.pref
     }
     return {}
+  })
+}
+
+function getScore() {
+  const loggedInUser = getLoggedinUser()
+  if (!loggedInUser) return 0
+
+  return getById(loggedInUser._id).then((fullUser) => {
+    if (fullUser) {
+      console.log(fullUser.score)
+      return fullUser.score
+    }
+    return 0
   })
 }
 

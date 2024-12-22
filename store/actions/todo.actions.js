@@ -20,7 +20,6 @@ export function loadTodos() {
     .query(filterBy)
     .then((todos) => {
       store.dispatch({ type: SET_TODOS, todos })
-      console.log(todos)
     })
     .catch((err) => {
       console.log('todo action -> Cannot load todos', err)
@@ -32,6 +31,7 @@ export function loadTodos() {
 }
 
 export function removeTodo(todoId) {
+  // change later
   return todoService
     .remove(todoId)
     .then(() => {
@@ -41,7 +41,7 @@ export function removeTodo(todoId) {
       console.log('todo action -> Cannot remove todo', err)
       throw err
     })
-    .finally(() => userService.addToHistory('removed'))
+    .finally(() => userService.addToHistory('removed a todo'))
 }
 
 export function saveTodo(todo) {
@@ -56,22 +56,36 @@ export function saveTodo(todo) {
       console.log('todo action -> Cannot save todo', err)
       throw err
     })
-    .finally(() => userService.addToHistory('saved a todo!'))
+    .finally(() => userService.addToHistory('saved a todo ->' + todo.txt))
 }
 
 export function toggleIsDone(todo) {
   const todoToSave = { ...todo, isDone: !todo.isDone }
 
-  if (todoToSave.isDone) incrementScore().then(() => getScore())
-
   return todoService
     .save(todoToSave)
     .then((savedTodo) => {
       store.dispatch({ type: UPDATE_TODO, todo: savedTodo })
+
+      if (savedTodo.isDone) {
+        return incrementScore()
+          .then((updatedScore) => {
+            console.log('Updated user score:', updatedScore)
+            return savedTodo
+          })
+          .catch((err) => {
+            console.error('Failed to increment user score:', err)
+            return savedTodo
+          })
+      }
+
       return savedTodo
     })
     .catch((err) => {
-      console.log('could not update the todo status')
+      console.error('Could not update the todo status:', err)
+      throw err
     })
-    .finally(() => userService.addToHistory('toggled a todo!'))
+    .finally(() => {
+      userService.addToHistory('toggled a todo ->' + todo.txt)
+    })
 }

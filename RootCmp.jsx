@@ -20,6 +20,8 @@ import { getScore } from './store/actions/user.actions.js'
 
 export function RootCmp() {
 
+
+
     return (
 
         < Provider store={store} >

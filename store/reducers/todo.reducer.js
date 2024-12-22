@@ -22,7 +22,6 @@ export function todoReducer(state = initialState, cmd = {}) {
         todos: cmd.todos,
       }
     case ADD_TODO:
-      console.log(cmd) // the cmd correct!
       return {
         ...state,
         todos: [...state.todos, cmd.todo],
