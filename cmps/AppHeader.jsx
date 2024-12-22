@@ -22,8 +22,8 @@ export function AppHeader() {
 
 
     useEffect(() => {
-
-        getScore()
+        if (user)
+            getScore()
 
     }, [score, user])
 
