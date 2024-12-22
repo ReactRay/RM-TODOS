@@ -26,16 +26,15 @@ export function TodoDetails() {
     }
 
     function onBack() {
-        // If nothing to do here, better use a Link
         navigate('/todo')
-        // navigate(-1)
+
     }
 
     if (!todo) return <div>Loading...</div>
     return (
         <section className="todo-details">
-            <h1 className={(todo.isDone)? 'done' : ''}>{todo.txt}</h1>
-            <h2>{(todo.isDone)? 'Done!' : 'In your list'}</h2>
+            <h1 className={(todo.isDone) ? 'done' : ''}>{todo.txt}</h1>
+            <h2>{(todo.isDone) ? 'Done!' : 'In your list'}</h2>
 
             <h1>Todo importance: {todo.importance}</h1>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim rem accusantium, itaque ut voluptates quo? Vitae animi maiores nisi, assumenda molestias odit provident quaerat accusamus, reprehenderit impedit, possimus est ad?</p>

@@ -7,7 +7,7 @@ export const SET_PREF = 'SET_PREF'
 const initialState = {
   loggedInUser: userService.getLoggedinUser(),
   score: 0,
-  pref: { backgroundColor: '#333', color: '#fff' },
+  pref: userService.getPrefs(),
   notifications: {},
 }
 

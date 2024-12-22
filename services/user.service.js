@@ -10,6 +10,9 @@ export const userService = {
   getEmptyCredentials,
   incrementUserScore,
   getUserScore,
+  getPrefs,
+  update,
+  addToHistory,
 }
 const STORAGE_KEY_LOGGEDIN = 'user'
 const STORAGE_KEY = 'userDB'
@@ -35,8 +38,9 @@ function signup({ username, password, fullname }) {
     username,
     password,
     fullname,
-    pref: { backGroundColor: '#333', color: '#fff' },
+    pref: { backGroundColor: '#9DB2BF', color: '#EAEAEA' },
     score: 0,
+    history: [{ action: 'created this account', time: Date.now() }],
   }
   user.createdAt = user.updatedAt = Date.now()
 
@@ -53,7 +57,7 @@ function getLoggedinUser() {
 }
 
 function _setLoggedinUser(user) {
-  const userToSave = { _id: user._id, fullname: user.fullname }
+  const userToSave = { _id: user._id, fullname: user.fullname, pref: user.pref }
   sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(userToSave))
   return userToSave
 }
@@ -66,25 +70,12 @@ function getEmptyCredentials() {
   }
 }
 
-function incrementUserScore() {
-  const user = getLoggedinUser()
-  if (user) {
-    user.score = (user.score || 0) + 10
-    return storageService
-      .put(STORAGE_KEY, user)
-      .then(() => _setLoggedinUser(user))
-  }
-  return Promise.reject('No logged-in user')
-}
-
 function getUserScore() {
-  const loggedInUser = getLoggedinUser() // Minimal data from sessionStorage
+  const loggedInUser = getLoggedinUser()
   if (!loggedInUser) return 'User not logged in'
 
-  // Fetch the full user object from storage
   return getById(loggedInUser._id).then((fullUser) => {
     if (fullUser) {
-      console.log(fullUser.score)
       console.log(fullUser)
       return fullUser.score
     }
@@ -92,29 +83,74 @@ function getUserScore() {
   })
 }
 
-function incrementUserScore() {
+function addToHistory(txt) {
   const loggedInUser = getLoggedinUser() // Retrieve logged-in user from sessionStorage
   if (!loggedInUser) return Promise.reject('No logged-in user')
 
-  // Fetch the full user object
   return getById(loggedInUser._id)
     .then((fullUser) => {
       if (!fullUser) return Promise.reject('User not found in database')
 
-      // Increment the score
+      fullUser.history = [...fullUser.history, { txt: txt, time: Date.now() }]
+
+      return storageService.put(STORAGE_KEY, fullUser).then(() => {
+        _setLoggedinUser(fullUser)
+        return fullUser.score
+      })
+    })
+    .catch((err) => {
+      console.error('failed to add for some reason:', err)
+      throw err
+    })
+}
+
+function incrementUserScore() {
+  const loggedInUser = getLoggedinUser() // Retrieve logged-in user from sessionStorage
+  if (!loggedInUser) return Promise.reject('No logged-in user')
+
+  return getById(loggedInUser._id)
+    .then((fullUser) => {
+      if (!fullUser) return Promise.reject('User not found in database')
+
       fullUser.score = (fullUser.score || 0) + 10
 
-      // Save the updated user back to the database
       return storageService.put(STORAGE_KEY, fullUser).then(() => {
-        // Update sessionStorage with the updated user data
         _setLoggedinUser(fullUser)
-        return fullUser.score // Return the updated score
+        return fullUser.score
       })
     })
     .catch((err) => {
       console.error('Failed to increment user score:', err)
       throw err
     })
+}
+
+// :root {
+
+//     --dark: #222831;
+//     --gray: #393E46;
+//     --blue: #9DB2BF;
+//     --light: #EAEAEA;
+
+// }
+
+function getPrefs() {
+  const loggedInUser = getLoggedinUser()
+  if (!loggedInUser) return {}
+
+  return getById(loggedInUser._id).then((fullUser) => {
+    if (fullUser) {
+      console.log(fullUser.pref)
+      return fullUser.pref
+    }
+    return {}
+  })
+}
+
+function update(user) {
+  return storageService
+    .put(STORAGE_KEY, user) //
+    .then(() => _setLoggedinUser(user))
 }
 
 // signup({username: 'muki', password: 'muki1', fullname: 'Muki Ja'})

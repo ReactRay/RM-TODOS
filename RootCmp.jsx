@@ -1,7 +1,9 @@
 const Router = ReactRouterDOM.HashRouter
 const { Routes, Route } = ReactRouterDOM
 
-const { Provider } = ReactRedux
+const { Provider, useSelector } = ReactRedux
+
+const { useEffect } = React
 
 import { store } from './store/store.js'
 import { AppHeader } from "./cmps/AppHeader.jsx"
@@ -14,11 +16,13 @@ import { AboutTeam } from "./cmps/AboutTeam.jsx"
 import { AboutVision } from "./cmps/AboutVision.jsx"
 import { Dashboard } from "./pages/Dashboard.jsx"
 import { UserProfile } from './pages/UserProfile.jsx'
+import { getScore } from './store/actions/user.actions.js'
 
 export function RootCmp() {
 
     return (
-        <Provider store={store}>
+
+        < Provider store={store} >
             <Router>
                 <section className="app main-layout">
                     <AppHeader />
@@ -40,6 +44,6 @@ export function RootCmp() {
                     </main>
                 </section>
             </Router>
-        </Provider>
+        </Provider >
     )
 }

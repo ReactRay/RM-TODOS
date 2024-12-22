@@ -15,15 +15,20 @@ export function AppHeader() {
     const user = useSelector(storeState => storeState.userModule.loggedInUser)
     const score = useSelector(storeState => storeState.userModule.score)
     const dispatch = useDispatch()
+    const formStyle = useSelector(state => state.userModule.pref)
+
 
     function onLogout() { // action
+
         logout().then(() => showSuccessMsg('logged out !'))
+            .then(() => navigate('/'))
             .catch(() => showErrorMsg('somethign went wrong'))
+
     }
 
 
     return (
-        <header className="header boxshadow">
+        <header className="header boxshadow" style={formStyle}>
             <section className="header-flex">
 
                 <h1 >React <span>Todo App</span> 📃</h1>

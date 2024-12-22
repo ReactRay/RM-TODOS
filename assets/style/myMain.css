@@ -88,6 +88,7 @@ a:hover {
     background-color: var(--light);
     width: 3rem;
     height: 1.8rem;
+    transition: all 1.4s;
 }
 
 .light {
@@ -350,6 +351,24 @@ table {
     padding: .5rem;
     color: var(--gray);
     background-color: var(--light);
+}
+
+
+.user-profile {
+
+    width: 90%;
+    margin: 3rem auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+}
+
+.color-form {
+
+    padding: 1rem;
+    border-radius: 8px;
 }
 
 

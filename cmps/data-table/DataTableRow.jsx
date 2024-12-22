@@ -1,12 +1,17 @@
 const { useState, Fragment } = React
 const { Link } = ReactRouterDOM
 
+
+
+
+
+
 export function DataTableRow({ todo, onRemoveTodo }) {
 
     const [isExpanded, setIsExpanded] = useState(false)
 
     return <Fragment>
-        <tr>
+        <tr >
             <td className="toggle-expand" onClick={() => {
                 setIsExpanded(!isExpanded)
             }}>

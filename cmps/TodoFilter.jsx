@@ -1,10 +1,12 @@
 const { useState, useEffect, useRef } = React
 import { utilService } from "../services/util.service.js"
 
+const { useSelector, useDispatch } = ReactRedux
 
 export function TodoFilter({ filterBy, onSetFilterBy }) {
     const [filterByToEdit, setFilterByToEdit] = useState(filterBy);
     const debouncedSetFilter = useRef(utilService.debounce(onSetFilterBy)).current;
+    const formStyle = useSelector(state => state.userModule.pref)
 
     useEffect(() => {
         debouncedSetFilter(filterByToEdit);
@@ -41,7 +43,7 @@ export function TodoFilter({ filterBy, onSetFilterBy }) {
     const { txt = "", importance = "", isDone = "" } = filterByToEdit;
 
     return (
-        <section className="todo-filter boxshadow">
+        <section className="todo-filter boxshadow" style={formStyle}>
             <h2>Filter Todos 📁</h2>
             <form onSubmit={onSubmitFilter}>
                 <input

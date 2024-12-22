@@ -1,8 +1,12 @@
 import { DataTableRow } from "./DataTableRow.jsx"
 
+
 export function DataTable({ todos, onRemoveTodo }) {
-    return <table border="1" className="data-table">
-        <thead>
+
+
+
+    return <table border="1" className="data-table" >
+        <thead >
             <tr>
                 <th style={{ width: '1em' }}>&nbsp;</th>
                 <th style={{ width: '5em' }}>Id</th>

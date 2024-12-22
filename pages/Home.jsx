@@ -11,13 +11,15 @@ export function Home() {
 
     const [isOn, setIsOn] = useState(false)
     const user = useSelector(storeState => storeState.userModule.loggedInUser)
+    const formStyle = useSelector(state => state.userModule.pref)
+
     useEffect(() => {
         if (user) getScore()
 
     }, [])
 
     return (
-        <section className="home container boxshadow">
+        <section className="home container boxshadow" style={formStyle}>
             <h1>Todo's R Us!</h1>
             <h4 className="boxshadow">welcome to my Todo redux project please ejoy your stay 😊</h4>
             <ul className="boxshadow">

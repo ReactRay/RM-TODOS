@@ -25,6 +25,9 @@ export function TodoIndex() {
     const userStyle = useSelector(storeState => storeState.userModule.pref)
     const user = useSelector(storeState => storeState.userModule.loggedInUser)
 
+    const formStyle = useSelector(state => state.userModule.pref)
+
+
     useEffect(() => {
         onLoadTodos()
         if (user)
@@ -47,6 +50,7 @@ export function TodoIndex() {
 
     function onRemoveTodo(todoId) {
         removeTodo(todoId)
+
     }
 
 
@@ -58,7 +62,7 @@ export function TodoIndex() {
 
     if (isLoading) return <div>Loading...</div>
     return (
-        <section className="todo-index">
+        <section className="todo-index" >
             <ProgressBar />
             <TodoFilter filterBy={filterBy} onSetFilterBy={setFilterBy} />
             <div  >
@@ -66,7 +70,7 @@ export function TodoIndex() {
             </div>
 
             <TodoList todos={todos} onRemoveTodo={onRemoveTodo} onToggleTodo={onToggleTodo} />
-            <div className="the-table boxshadow">
+            <div className="the-table boxshadow" style={formStyle}>
                 <h2>Todos Table 📔</h2>
                 <DataTable todos={todos} onRemoveTodo={onRemoveTodo} />
             </div>

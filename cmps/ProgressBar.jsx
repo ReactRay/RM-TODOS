@@ -9,6 +9,8 @@ export function ProgressBar() {
     const [numberOfDone, setNumberOfDone] = useState(0); // Initialize state to 0
     const todos = useSelector(storeState => storeState.todoModule.todos);
     const dispatch = useDispatch();
+    const formStyle = useSelector(state => state.userModule.pref)
+
 
     useEffect(() => {
         onLoadTodos();
@@ -30,7 +32,7 @@ export function ProgressBar() {
 
     return (
 
-        <div className="bar boxshadow">
+        <div className="bar boxshadow" style={formStyle}>
             <span>progress:</span>
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(((bar, idx) => {
                 return <div key={idx + 1} className={`bar-unit ${idx + 1 <= numberOfDone ? 'light' : ''}`}>

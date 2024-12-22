@@ -1,4 +1,5 @@
 import { todoService } from '../../services/todo.service.js'
+import { userService } from '../../services/user.service.js'
 import {
   ADD_TODO,
   REMOVE_TODO,
@@ -40,6 +41,7 @@ export function removeTodo(todoId) {
       console.log('todo action -> Cannot remove todo', err)
       throw err
     })
+    .finally(() => userService.addToHistory('removed'))
 }
 
 export function saveTodo(todo) {
@@ -54,6 +56,7 @@ export function saveTodo(todo) {
       console.log('todo action -> Cannot save todo', err)
       throw err
     })
+    .finally(() => userService.addToHistory('saved a todo!'))
 }
 
 export function toggleIsDone(todo) {
@@ -70,4 +73,5 @@ export function toggleIsDone(todo) {
     .catch((err) => {
       console.log('could not update the todo status')
     })
+    .finally(() => userService.addToHistory('toggled a todo!'))
 }
