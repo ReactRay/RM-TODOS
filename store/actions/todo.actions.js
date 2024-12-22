@@ -7,7 +7,7 @@ import {
   SET_IS_LOADING,
   UPDATE_TODO,
 } from '../reducers/todo.reducer.js'
-import { SET_USER_SCORE } from '../reducers/user.reducer.js'
+import { SET_USER, SET_USER_SCORE } from '../reducers/user.reducer.js'
 import { store } from '../store.js'
 import { getScore, incrementScore } from './user.actions.js'
 
@@ -71,6 +71,7 @@ export function toggleIsDone(todo) {
         return incrementScore()
           .then((updatedScore) => {
             console.log('Updated user score:', updatedScore)
+            store.dispatch({ type: SET_USER_SCORE, score: updatedScore })
             return savedTodo
           })
           .catch((err) => {
