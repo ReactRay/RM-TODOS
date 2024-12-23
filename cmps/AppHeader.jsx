@@ -9,7 +9,6 @@ import { logout, getScore } from '../store/actions/user.actions.js'
 
 
 const { useSelector, useDispatch } = ReactRedux
-
 const { useEffect } = React
 
 export function AppHeader() {
