@@ -14,7 +14,7 @@ export function Home() {
     const formStyle = useSelector(state => state.userModule.pref)
 
     useEffect(() => {
-        if (user) {
+        if (user && user.pref) {
             getScore()
             getStyle()
         }
@@ -38,7 +38,6 @@ export function Home() {
                 <li>please enjoy , i put my best into my work ❤️</li>
             </ul>
             {
-
                 user && <Presets />
             }
 
