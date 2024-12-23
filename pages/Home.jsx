@@ -35,9 +35,9 @@ export function Home() {
                 <li>or just choose a preset from the list below after you login/signup 😊</li>
                 <li>please enjoy , i put my best into my work ❤️</li>
             </ul>
-            {/* {
+            {
                 user && <Presets />
-            } */}
+            }
 
 
         </section>
