@@ -15,7 +15,7 @@ const colorPalette = [
 
 
 
-import { updateUserPref, getStyle } from "../store/actions/user.actions.js";
+import { updateUserPref } from "../store/actions/user.actions.js";
 
 export function Presets() {
 
