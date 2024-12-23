@@ -15,7 +15,7 @@ export function loadTodos() {
   // filter as param
   const filterBy = store.getState().todoModule.filterBy
 
-  store.dispatch({ type: SET_IS_LOADING, isLoading: false }) // change later
+  // store.dispatch({ type: SET_IS_LOADING, isLoading: true }) // change later
   return todoService
     .query(filterBy)
     .then((todos) => {
@@ -25,9 +25,9 @@ export function loadTodos() {
       console.log('todo action -> Cannot load todos', err)
       throw err
     })
-    .finally(() => {
-      store.dispatch({ type: SET_IS_LOADING, isLoading: false })
-    })
+  //     .finally(() => {
+  //       store.dispatch({ type: SET_IS_LOADING, isLoading: false })
+  //     })
 }
 
 export function removeTodo(todoId) {

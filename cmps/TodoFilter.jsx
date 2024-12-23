@@ -30,7 +30,7 @@ export function TodoFilter({ filterBy, onSetFilterBy }) {
             default:
                 break;
         }
-
+        console.log('handle change activated')
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }));
     }
 
@@ -39,7 +39,7 @@ export function TodoFilter({ filterBy, onSetFilterBy }) {
         setFilterByToEdit(filterBy); // Trigger manual filtering
     }
 
-    const { txt = "", importance = "", isDone = "" } = filterByToEdit;
+    const { txt = "", importance = "", isDone = "", sorted = false } = filterByToEdit;
 
     return (
         <section className="todo-filter boxshadow" style={formStyle}>
@@ -72,6 +72,8 @@ export function TodoFilter({ filterBy, onSetFilterBy }) {
                     <option value="true">Completed</option>
                     <option value="false">In Progress</option>
                 </select>
+                <label >  sort by importance</label>
+                <input type="checkbox" value={sorted} id="sorted" name="sorted" onChange={handleChange} />
                 <button hidden>Set Filter</button>
             </form>
         </section>

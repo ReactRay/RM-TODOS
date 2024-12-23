@@ -39,7 +39,7 @@ export function AppHeader() {
         <header className="header boxshadow" style={formStyle}>
             <section className="header-flex">
 
-                <h1 >React <span>Todo App</span> 📃</h1>
+                <h1 ><span>React </span>Todos<span>App</span> 📃</h1>
                 <nav className="nav-flex">
                     <NavLink to="/" >Home</NavLink>
                     {/* <NavLink to="/about" >About</NavLink> */}

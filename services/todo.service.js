@@ -17,6 +17,7 @@ export const todoService = {
 window.cs = todoService
 
 function query(filterBy = {}) {
+  console.log('in todo service filter', filterBy)
   return storageService.query(TODO_KEY).then((todos) => {
     if (filterBy.txt) {
       const regExp = new RegExp(filterBy.txt, 'i')
@@ -28,6 +29,9 @@ function query(filterBy = {}) {
     }
     if (filterBy.isDone === false || filterBy.isDone === true) {
       todos = todos.filter((todo) => todo.isDone === filterBy.isDone)
+    }
+    if (filterBy.sorted) {
+      todos = todos.sort((a, b) => b.importance - a.importance)
     }
 
     return todos
@@ -62,7 +66,7 @@ function getEmptyTodo(txt = '', importance = 5) {
 }
 
 function getDefaultFilter() {
-  return { txt: '', importance: 0, isDone: '' }
+  return { txt: '', importance: 0, isDone: '', sorted: false }
 }
 
 function getFilterFromSearchParams(searchParams) {
