@@ -16,7 +16,6 @@ import { AboutTeam } from "./cmps/AboutTeam.jsx"
 import { AboutVision } from "./cmps/AboutVision.jsx"
 import { Dashboard } from "./pages/Dashboard.jsx"
 import { UserProfile } from './pages/UserProfile.jsx'
-import { getScore } from './store/actions/user.actions.js'
 
 export function RootCmp() {
 

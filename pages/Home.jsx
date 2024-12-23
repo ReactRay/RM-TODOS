@@ -1,4 +1,3 @@
-import { ToggleButton } from "../cmps/ToggleButton.jsx"
 import { getScore, getStyle } from "../store/actions/user.actions.js"
 import { Presets } from "../cmps/presets.jsx"
 const { useState, useEffect } = React
@@ -9,7 +8,6 @@ export function Home() {
 
 
 
-    const [isOn, setIsOn] = useState(false)
     const user = useSelector(storeState => storeState.userModule.loggedInUser)
     const formStyle = useSelector(state => state.userModule.pref)
 
@@ -37,9 +35,9 @@ export function Home() {
                 <li>or just choose a preset from the list below after you login/signup 😊</li>
                 <li>please enjoy , i put my best into my work ❤️</li>
             </ul>
-            {
+            {/* {
                 user && <Presets />
-            }
+            } */}
 
 
         </section>
