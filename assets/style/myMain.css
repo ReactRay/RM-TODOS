@@ -241,7 +241,9 @@ a:hover {
 }
 
 li:hover {
-    color: var(--blue)
+    color: var(--blue);
+
+
 }
 
 .data-table th {
