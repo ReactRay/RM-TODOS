@@ -3,8 +3,10 @@ import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 
 import { saveTodo } from '../store/actions/todo.actions.js'
 import { SET_USER_SCORE } from "../store/reducers/user.reducer.js"
+import { getStyle } from "../store/actions/user.actions.js"
 
 const { useState, useEffect } = React
+const { useSelector } = ReactRedux
 const { useNavigate, useParams } = ReactRouterDOM
 const { useDispatch } = ReactRedux
 
@@ -12,6 +14,8 @@ export function TodoEdit() {
 
     const [todoToEdit, setTodoToEdit] = useState(todoService.getEmptyTodo())
 
+    const formStyle = useSelector(state => state.userModule.pref)
+    const user = useSelector(state => state.userModule.user)
     const navigate = useNavigate()
     const params = useParams()
 
@@ -21,6 +25,8 @@ export function TodoEdit() {
     const dispatch = useDispatch()
     useEffect(() => {
         if (params.todoId) loadTodo()
+        if (user)
+            getStyle()
     }, [])
 
     function loadTodo() {
@@ -67,7 +73,7 @@ export function TodoEdit() {
     return (
         <section className="container ">
 
-            <form onSubmit={onSaveTodo} className="todo-edit">
+            <form onSubmit={onSaveTodo} className="todo-edit" style={formStyle}>
 
                 <label htmlFor="txt">Text:</label>
                 <input onChange={handleChange} value={txt} type="text" name="txt" id="txt" />

@@ -240,9 +240,12 @@ a:hover {
     text-align: left;
 }
 
+li:hover {
+    color: var(--blue)
+}
+
 .data-table th {
     font-weight: bold;
-    background-color: #f4f4f4;
 }
 
 .data-table td {
