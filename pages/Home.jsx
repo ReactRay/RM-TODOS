@@ -1,6 +1,6 @@
 import { ToggleButton } from "../cmps/ToggleButton.jsx"
 import { getScore, getStyle } from "../store/actions/user.actions.js"
-
+import { Presets } from "../cmps/presets.jsx"
 const { useState, useEffect } = React
 
 const { useSelector } = ReactRedux
@@ -31,8 +31,14 @@ export function Home() {
                 </li>
                 <li>there is no dummy data in this project but don't worr adding todos is easy 😃</li>
                 <li>the progress bar will be filled when ever you complete a todo</li>
+                <li>in your profile , feel free to change the style of the whole website 💅🏻</li>
                 <li>please enjoy , i put my best into my work ❤️</li>
             </ul>
+            {
+
+                user && <Presets />
+            }
+
 
         </section>
     )

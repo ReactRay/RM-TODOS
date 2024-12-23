@@ -13,6 +13,22 @@
 
 }
 
+.color-unit {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #fff;
+}
+
+.color-flex {
+    width: 90%;
+    margin: 1rem auto;
+
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
 body {
     font-family: 'Courier New', Courier, monospace;
     font-weight: 800;

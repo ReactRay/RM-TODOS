@@ -11,6 +11,8 @@ const { useSelector, useDispatch } = ReactRedux
 const { useEffect, useState } = React
 
 export function UserProfile() {
+    const [currentPage, setCurrentPage] = useState(1); // Track current page
+    const itemsPerPage = 5; // Number of notifications per page
 
     const [userHistory, setUserHistory] = useState([])
     const navigate = useNavigate()
@@ -29,7 +31,7 @@ export function UserProfile() {
         if (user) {
             let savedUser = await userService.getById(user._id)
             const savedHistory = savedUser.history || []
-            setUserHistory(savedHistory)
+            setUserHistory(savedHistory.sort((a, b) => b.time - a.time))
 
 
         }
@@ -73,6 +75,22 @@ export function UserProfile() {
         updateUserPref(newPref)
     }
 
+    // pagination Logic
+    const totalPages = Math.ceil(userHistory.length / itemsPerPage);
+    const paginatedHistory = userHistory.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    );
+
+    function nextPage() {
+        if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+    }
+
+    function prevPage() {
+        if (currentPage > 1) setCurrentPage(currentPage - 1);
+    }
+
+
     return (
         <div className="user-profile" >
 
@@ -102,7 +120,29 @@ export function UserProfile() {
                     />
                 </div>
             </form>
-            <div className="color-form boxshadow" style={formStyle}> Notifications:{userHistory.map((history, idx) => { return <h4 className="history" key={history.txt + idx}>{history.txt || history.action},{timeAgo(history.time)}</h4> })}</div>
+            <div>
+                <div className="color-form boxshadow" style={formStyle}>
+                    <h3>Notifications:</h3>
+                    {paginatedHistory.map((history, idx) => (
+                        <h4 className="history" key={history.txt + idx}>
+                            {history.txt || history.action}, {timeAgo(history.time)}
+                        </h4>
+                    ))}
+
+                    {/* Pagination Controls */}
+                    <div className="pagination-controls">
+                        <button onClick={prevPage} disabled={currentPage === 1}>
+                            Previous
+                        </button>
+                        <span>
+                            Page {currentPage} of {totalPages}
+                        </span>
+                        <button onClick={nextPage} disabled={currentPage === totalPages}>
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div >
     )
 }
