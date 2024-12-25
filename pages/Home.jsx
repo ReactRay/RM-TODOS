@@ -1,5 +1,5 @@
 import { getScore, getStyle } from "../store/actions/user.actions.js"
-import { Presets } from "../cmps/Presets.jsx"
+import { Presets } from "../cmps/Presets.jsx";
 const { useState, useEffect } = React
 
 const { useSelector } = ReactRedux
